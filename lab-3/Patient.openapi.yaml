@@ -1,0 +1,43 @@
+openapi: "3.1.0"
+info:
+  version: 1.0.0
+  title: FHIR Server
+servers:
+  - url: "https://gateway.example/fhir"
+paths:
+  /Patient/{id}:
+    get:
+      operationId: readPatient
+      summary: "read-instance: Read Patient instance"
+      parameters:
+      - name: id
+        in: path
+        description: The resource ID
+        required: true
+        style: simple
+        schema:
+          minimum: 1
+          type: string
+        example: "123"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
+components:
+  schemas:
+    FHIR-JSON-RESOURCE:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        tag:
+          type: string

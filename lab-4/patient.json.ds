@@ -1,0 +1,11 @@
+local getAttr(attr) = ds.filter(body.attributes, function(v, i) v.attribute == attr)[0].value;
+
+{
+  "resourceType": "Patient",
+  "id" : body.trackedEntity,
+  "name": [
+    {
+      "family": getAttr('zDhUuAYrxNC')
+    }
+  ]
+}
